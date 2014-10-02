@@ -71,6 +71,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rpg-mv-ATq">
+                                <rect key="frame" x="16" y="49" width="48" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="arc-Oe-ghL">
                                 <rect key="frame" x="262" y="304" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,6 +87,10 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cTi-Zs-cre" appends="YES" id="ZT6-KV-kCv"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="labelEight" destination="HHe-Z5-nCJ" id="wzF-nF-ZJx"/>
@@ -91,9 +102,15 @@
                         <outlet property="labelSix" destination="7BH-0z-Ad4" id="tiv-xI-BbU"/>
                         <outlet property="labelThree" destination="TPp-jk-WRR" id="N7j-5b-G2e"/>
                         <outlet property="labelTwo" destination="EGO-XY-3PQ" id="eRa-Aj-nYI"/>
+                        <outlet property="whichPlayerLabel" destination="Rpg-mv-ATq" id="tLJ-FD-vep"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cTi-Zs-cre">
+                    <connections>
+                        <action selector="onLabelTapped:" destination="vXZ-lx-hvc" id="clA-in-ftE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="278.93333333333334" y="377.71999999999997"/>
         </scene>
