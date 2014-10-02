@@ -12,8 +12,7 @@ class ViewController: UIViewController {
 
     //Vars
     var center: CGPoint?
-
-    //IBOutlets
+        //IBOutlets
     @IBOutlet weak var labelOne: UILabel!
     @IBOutlet weak var labelTwo: UILabel!
     @IBOutlet weak var labelThree: UILabel!
@@ -24,6 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelEight: UILabel!
     @IBOutlet weak var labelNine: UILabel!
     @IBOutlet weak var whichPlayerLabel: UILabel!
+
+    //var ticTacLabels = [labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix, labelSeven, labelEight, labelNine]
 
     //IBActions
     @IBAction func onLabelTapped(tapGesture: UITapGestureRecognizer) {
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,16 +48,40 @@ class ViewController: UIViewController {
     func findLabelUsingPoint(point: CGPoint) -> UILabel {
 
         if (CGRectContainsPoint(labelOne.frame, point)) {
-
             println("labelone")
             return labelOne
-
         }
-
         else if (CGRectContainsPoint(labelTwo.frame, point)) {
-
             println("labeltwo")
-            return labelOne
+            return labelTwo
+        }
+        else if (CGRectContainsPoint(labelThree.frame, point)) {
+            println("labelthree")
+            return labelThree
+        }
+        else if (CGRectContainsPoint(labelFour.frame, point)) {
+            println("labelfour")
+            return labelFour
+        }
+        else if (CGRectContainsPoint(labelFive.frame, point)) {
+            println("labelfive")
+            return labelFive
+        }
+        else if (CGRectContainsPoint(labelSix.frame, point)) {
+            println("labelsix")
+            return labelSix
+        }
+        else if (CGRectContainsPoint(labelSeven.frame, point)) {
+            println("labelseven")
+            return labelSeven
+        }
+        else if (CGRectContainsPoint(labelEight.frame, point)) {
+            println("labeleight")
+            return labelEight
+        }
+        else if (CGRectContainsPoint(labelNine.frame, point)) {
+            println("labelnight")
+            return labelNine
         }
 
         return labelOne
