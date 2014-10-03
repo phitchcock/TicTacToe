@@ -27,6 +27,43 @@ class ViewController: UIViewController {
     //IBActions
     @IBAction func onButtonPressed(sender: AnyObject) {
 
+        self.gameLogic(sender)
+    }
+
+    @IBAction func playAgainButton(sender: AnyObject) {
+
+        startNumber = 1
+        winner = 0
+        gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        var button : UIButton
+
+        for var i = 0; i < 9; i++ {
+
+            button = view.viewWithTag(i) as UIButton
+            button.setImage(nil, forState: .Normal)
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        timerLabel.text = String(counter)
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+
+    }
+
+    override func viewDidAppear(animated: Bool) {
+
+        playAgain.alpha = 0
+
+    }
+
+    func gameLogic(sender: AnyObject) {
         if (gameState[sender.tag] == 0) {
 
             var changeImage = UIImage()
@@ -66,54 +103,20 @@ class ViewController: UIViewController {
                     println("\(winner)")
                 }
 
-
+                
                 UIView.animateWithDuration(0.4, animations: {
-
+                    
                     self.playAgain.alpha = 1
-
+                    
                 })
-
+                
             }
-
+            
             startNumber++
-
+            
             sender.setImage(changeImage, forState: .Normal)
         }
-
-    }
-
-    @IBAction func playAgainButton(sender: AnyObject) {
-
-        startNumber = 1
-        winner = 0
-        gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-        var button : UIButton
-
-        for var i = 0; i < 9; i++ {
-
-            button = view.viewWithTag(i) as UIButton
-            button.setImage(nil, forState: .Normal)
-
-        }
-
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        timerLabel.text = String(counter)
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-    }
-
-    override func viewDidAppear(animated: Bool) {
-
-        playAgain.alpha = 0
+        
 
     }
 
