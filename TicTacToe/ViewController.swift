@@ -12,10 +12,13 @@ class ViewController: UIViewController {
 
     //Variables
     var startNumber = 1
+    var winner = 0
     var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
     //IBOutlets
     @IBOutlet weak var gameButton0: UIButton!
+    @IBOutlet weak var winnerLabel: UILabel!
 
     //IBActions
     @IBAction func onButtonPressed(sender: AnyObject) {
@@ -35,6 +38,29 @@ class ViewController: UIViewController {
                 changeImage = UIImage(named: "o.png")
                 gameState[sender.tag] = 1
                 println("\(gameState)")
+
+            }
+
+            for combo in winningCombinations {
+                if (gameState[combo[0]] == gameState[combo[1]] && gameState[combo[1]] == gameState[combo[2]] && gameState[combo[0]] != 0) {
+
+                    winner = gameState[combo[0]]
+
+                }
+            }
+
+            if (winner != 0) {
+
+                if (winner == 1) {
+
+                    winnerLabel.text = "zeros winner winner chicken dinner"
+                    println("\(winner)")
+
+                } else {
+
+                    winnerLabel.text = "x's winner winner chicken dinner"
+                    println("\(winner)")
+                }
 
             }
 

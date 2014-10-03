@@ -61,6 +61,11 @@ create array to keep track of boxes tapped initialized at 0 for each button 9 sl
   }
   ```
 determine winner based on ways to win, 3 horizontal, 3 vertical and 2 diagnal. Create nested arrays loop through each tap to see if winner or not
+  let winningCombinations = [horizontal [0, 1, 2], [3, 4, 5], [6, 7, 8], vartical [0, 3, 6], [1, 4, 7], [2, 5, 8], diaganal [0, 4, 8], [2, 4, 6]]
+  loop through winningCombinations
+  check gameState in winningCombinations by index gameState[combination[0]]
+  need winner var set to 0 
+
 
 
 

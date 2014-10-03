@@ -111,11 +111,19 @@
                                     <action selector="onButtonPressed:" destination="Ifs-Zi-bse" eventType="touchUpInside" id="nU5-0k-yOA"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eBW-Wm-ojZ">
+                                <rect key="frame" x="16" y="31" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="gameButton0" destination="y8G-BJ-2Pc" id="Bpx-dh-0RH"/>
+                        <outlet property="winnerLabel" destination="eBW-Wm-ojZ" id="HLP-m7-ybH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6Z-JC-6Yk" userLabel="First Responder" sceneMemberID="firstResponder"/>
