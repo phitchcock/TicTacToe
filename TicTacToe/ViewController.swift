@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     //IBOutlets
     @IBOutlet weak var gameButton0: UIButton!
     @IBOutlet weak var winnerLabel: UILabel!
+    @IBOutlet weak var playAgain: UIButton!
 
     //IBActions
     @IBAction func onButtonPressed(sender: AnyObject) {
@@ -62,6 +63,13 @@ class ViewController: UIViewController {
                     println("\(winner)")
                 }
 
+
+                UIView.animateWithDuration(0.4, animations: {
+
+                    self.playAgain.alpha = 1
+
+                })
+
             }
 
             startNumber++
@@ -95,6 +103,12 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+
+    }
+
+    override func viewDidAppear(animated: Bool) {
+
+        playAgain.alpha = 0
 
     }
 

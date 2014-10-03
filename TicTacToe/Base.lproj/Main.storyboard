@@ -133,6 +133,7 @@
                     </view>
                     <connections>
                         <outlet property="gameButton0" destination="y8G-BJ-2Pc" id="Bpx-dh-0RH"/>
+                        <outlet property="playAgain" destination="VzK-dl-cXI" id="mTI-Mo-KUo"/>
                         <outlet property="winnerLabel" destination="eBW-Wm-ojZ" id="HLP-m7-ybH"/>
                     </connections>
                 </viewController>
