@@ -70,7 +70,24 @@ class ViewController: UIViewController {
         }
 
     }
-    
+
+    @IBAction func playAgainButton(sender: AnyObject) {
+
+        startNumber = 1
+        winner = 0
+        gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        var button : UIButton
+
+        for var i = 0; i < 9; i++ {
+
+            button = view.viewWithTag(i) as UIButton
+            button.setImage(nil, forState: .Normal)
+
+        }
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,7 +97,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
 
     }
-
 
 }
 
