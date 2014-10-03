@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D007718B19DF31F3009D1A3F /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D007718A19DF31F3009D1A3F /* ModalViewController.swift */; };
 		D0C9EA5819DDF2EF00CA1C6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9EA5719DDF2EF00CA1C6D /* AppDelegate.swift */; };
 		D0C9EA5A19DDF2EF00CA1C6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9EA5919DDF2EF00CA1C6D /* ViewController.swift */; };
 		D0C9EA5D19DDF2EF00CA1C6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0C9EA5B19DDF2EF00CA1C6D /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D007718A19DF31F3009D1A3F /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		D0C9EA5219DDF2EF00CA1C6D /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C9EA5619DDF2EF00CA1C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0C9EA5719DDF2EF00CA1C6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				D0C9EA5719DDF2EF00CA1C6D /* AppDelegate.swift */,
 				D0C9EA5919DDF2EF00CA1C6D /* ViewController.swift */,
 				D0C9EA5B19DDF2EF00CA1C6D /* Main.storyboard */,
+				D007718A19DF31F3009D1A3F /* ModalViewController.swift */,
 				D0C9EA5E19DDF2EF00CA1C6D /* Images.xcassets */,
 				D0C9EA6019DDF2EF00CA1C6D /* LaunchScreen.xib */,
 				D0C9EA5519DDF2EF00CA1C6D /* Supporting Files */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0C9EA5A19DDF2EF00CA1C6D /* ViewController.swift in Sources */,
+				D007718B19DF31F3009D1A3F /* ModalViewController.swift in Sources */,
 				D0C9EA5819DDF2EF00CA1C6D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +409,7 @@
 				D0C9EA7319DDF2EF00CA1C6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0C9EA7419DDF2EF00CA1C6D /* Build configuration list for PBXNativeTarget "TicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +418,7 @@
 				D0C9EA7619DDF2EF00CA1C6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

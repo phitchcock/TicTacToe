@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     //Variables
     var startNumber = 1
     var winner = 0
+    var timer = NSTimer()
+    var counter = 0
     var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
@@ -20,6 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameButton0: UIButton!
     @IBOutlet weak var winnerLabel: UILabel!
     @IBOutlet weak var playAgain: UIButton!
+    @IBOutlet weak var timerLabel: UILabel!
 
     //IBActions
     @IBAction func onButtonPressed(sender: AnyObject) {
@@ -99,6 +102,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        timerLabel.text = String(counter)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,5 +117,25 @@ class ViewController: UIViewController {
 
     }
 
+    //Timer functions
+    @IBAction func startTimer(sender: AnyObject) {
+
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+
+    }
+
+    func update() {
+        timerLabel.text = String(counter++)
+    }
+
+    @IBAction func stopCounterPressed(sender: AnyObject) {
+        timer.invalidate()
+    }
+
+    @IBAction func clearCounterPressed(sender: AnyObject) {
+        timer.invalidate()
+        counter = 0
+        timerLabel.text = String(counter)
+    }
 }
 
