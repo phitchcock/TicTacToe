@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     @IBAction func onButtonPressed(sender: AnyObject) {
 
         self.gameLogic(sender)
+
+
     }
 
     @IBAction func playAgainButton(sender: AnyObject) {
@@ -35,6 +37,7 @@ class ViewController: UIViewController {
         startNumber = 1
         winner = 0
         gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.clearCounterPressed(sender)
 
         var button : UIButton
 
@@ -47,20 +50,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         timerLabel.text = String(counter)
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
     }
 
     override func viewDidAppear(animated: Bool) {
-
         playAgain.alpha = 0
-
     }
 
     func gameLogic(sender: AnyObject) {
@@ -72,15 +70,19 @@ class ViewController: UIViewController {
 
                 changeImage = UIImage(named: "x.png")
                 gameState[sender.tag] = 2
-                println("\(gameState)")
+                self.turnOver(sender)
+                //self.startTimer(sender)
 
             } else {
 
                 changeImage = UIImage(named: "o.png")
                 gameState[sender.tag] = 1
-                println("\(gameState)")
+                self.turnOver(sender)
+                //self.startTimer(sender)
 
             }
+
+
 
             for combo in winningCombinations {
                 if (gameState[combo[0]] == gameState[combo[1]] && gameState[combo[1]] == gameState[combo[2]] && gameState[combo[0]] != 0) {
@@ -95,12 +97,14 @@ class ViewController: UIViewController {
                 if (winner == 1) {
 
                     winnerLabel.text = "zeros winner winner chicken dinner"
-                    println("\(winner)")
+                    self.stopCounterPressed(sender)
+
 
                 } else {
 
                     winnerLabel.text = "x's winner winner chicken dinner"
-                    println("\(winner)")
+                    self.stopCounterPressed(sender)
+
                 }
 
                 
@@ -122,7 +126,9 @@ class ViewController: UIViewController {
 
     //Timer functions
     @IBAction func startTimer(sender: AnyObject) {
-
+        timer.invalidate()
+        counter = 0
+        timerLabel.text = String(counter)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
 
     }
@@ -139,6 +145,18 @@ class ViewController: UIViewController {
         timer.invalidate()
         counter = 0
         timerLabel.text = String(counter)
+    }
+
+    func turnOver(sender: AnyObject) {
+
+        if (timerLabel.text?.toInt() > 2) {
+            println("timer")
+            timer.invalidate()
+            counter = 0
+            timerLabel.text = String(counter)
+        } else {
+            self.startTimer(sender)
+        }
     }
 }
 
