@@ -12,6 +12,12 @@ class ViewController: UIViewController {
 
     //Vars
     var center: CGPoint?
+    var playerNames:[String] = []
+    var playerOne:String!
+    var playerTwo:String!
+
+
+
         //IBOutlets
     @IBOutlet weak var labelOne: UILabel!
     @IBOutlet weak var labelTwo: UILabel!
@@ -23,6 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelEight: UILabel!
     @IBOutlet weak var labelNine: UILabel!
     @IBOutlet weak var whichPlayerLabel: UILabel!
+    @IBOutlet weak var playerNameTextField: UITextField!
 
     //var ticTacLabels = [labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix, labelSeven, labelEight, labelNine]
 
@@ -32,16 +39,50 @@ class ViewController: UIViewController {
 
         self.findLabelUsingPoint(point)
         println("\(point)")
+
+        if (tapGesture.state == UIGestureRecognizerState.Ended) {
+
+            if (playerNames[0] == playerOne) {
+                self.findLabelUsingPoint(point).text = "X"
+            }
+            else if (playerNames[1] == playerTwo){
+                self.findLabelUsingPoint(point).text = "O"
+            }
+        }
+
+    }
+    @IBAction func addPlayerButton(sender: AnyObject) {
+
+        if (playerNames.count == 0) {
+            playerOne = playerNameTextField.text
+            playerNames.append(playerOne)
+            playerNameTextField.text = ""
+
+        } else {
+            playerTwo = playerNameTextField.text
+            playerNames.append(playerTwo)
+            playerNameTextField.text = ""
+
+        }
+
+        println("\(playerNames)")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+
+    }
+
+    func startPlayerTurn() {
+
+    }
+
+    func startGame() {
 
     }
 
