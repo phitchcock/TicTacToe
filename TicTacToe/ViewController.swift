@@ -17,9 +17,6 @@ class ViewController: UIViewController {
     var playerTwo:String!
     var labels:[UILabel] = []
 
-
-
-
     //IBOutlets
     @IBOutlet weak var labelOne: UILabel!
     @IBOutlet weak var labelTwo: UILabel!
@@ -33,27 +30,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var whichPlayerLabel: UILabel!
     @IBOutlet weak var playerNameTextField: UITextField!
 
-    //var ticTacLabels = [labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix, labelSeven, labelEight, labelNine]
-
     //IBActions
     @IBAction func onLabelTapped(tapGesture: UITapGestureRecognizer) {
         var point: CGPoint = tapGesture.locationOfTouch(0.1, inView: self.view)
 
         self.findLabelUsingPoint(point)
-        println("\(point)")
 
         if (tapGesture.state == UIGestureRecognizerState.Ended) {
-
-            if (playerNames[0] == playerOne) {
+            if (self.whichPlayerLabel.text == "Player 1") {
                 self.findLabelUsingPoint(point).text = "X"
                 self.findLabelUsingPoint(point).textColor = UIColor.blueColor()
-            }
-            else if (playerNames[1] == playerTwo){
+
+            } else {
                 self.findLabelUsingPoint(point).text = "O"
+                self.findLabelUsingPoint(point).textColor = UIColor.redColor()
             }
         }
-
+        self.startPlayerTurn()
     }
+    
     @IBAction func addPlayerButton(sender: AnyObject) {
 
         if (playerNames.count == 0) {
@@ -79,6 +74,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        startGame()
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,22 +83,70 @@ class ViewController: UIViewController {
     }
 
     func startPlayerTurn() {
+        if (whichPlayerLabel.text == "Player 1") {
+            whichPlayerLabel.text = "Player 2"
+        } else {
+            whichPlayerLabel.text = "Player 1"
+        }
 
     }
 
     func startGame() {
+        self.whichPlayerLabel.text = "Player 1"
 
     }
 
     func findLabelUsingPoint(point: CGPoint) -> UILabel {
-
+        /*
         for label in labels {
             if (CGRectContainsPoint(label.frame, point)) {
                 return label
             }
         }
-
         return labelOne
+        */
+        if (CGRectContainsPoint(labelOne.frame, point)) {
+
+            println("labelone")
+            return labelOne
+
+        }
+
+        else if (CGRectContainsPoint(labelTwo.frame, point)) {
+
+            println("labeltne")
+            return labelTwo
+        }
+        else if (CGRectContainsPoint(labelThree.frame, point)) {
+            println("labelthree")
+            return labelThree
+        }
+        else if (CGRectContainsPoint(labelFour.frame, point)) {
+            println("labelfour")
+            return labelFour
+        }
+        else if (CGRectContainsPoint(labelFive.frame, point)) {
+            println("labelfive")
+            return labelFive
+        }
+        else if (CGRectContainsPoint(labelSix.frame, point)) {
+            println("labelsix")
+            return labelSix
+        }
+        else if (CGRectContainsPoint(labelSeven.frame, point)) {
+            println("labelseven")
+            return labelSeven
+        }
+        else if (CGRectContainsPoint(labelEight.frame, point)) {
+            println("labeleight")
+            return labelEight
+        }
+        else if (CGRectContainsPoint(labelNine.frame, point)) {
+            println("labelnight")
+            return labelNine
+        }
+
+        return labelNine
     }
 
 
