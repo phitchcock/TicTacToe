@@ -25,6 +25,7 @@ class ModalViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         homeScreen()
+        //navigationBar.barTintColor = UIColor(red: 0.197, green: 0.236, blue: 0.233, alpha: 1)
     }
 
     override func didReceiveMemoryWarning() {
