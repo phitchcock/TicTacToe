@@ -13,10 +13,11 @@ class ViewController: UIViewController {
     //Variables
     var startNumber = 1
     var winner = 0
-    var timer = NSTimer()
     var counter = 0
     var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    var timer = NSTimer()
+    var center:CGPoint?
     var changeImage = UIImage()
     var selectImage = UIImage()
 
@@ -27,20 +28,31 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var selectionButton: UIButton!
 
+    //Apple Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        selectImage = UIImage(named: "o.png")
+        winnerLabel.text = "Make a move!"
+        timerLabel.text = "\(counter) left!"
+        center = selectionButton.center
+        selectionButton.setImage(selectImage, forState: .Normal)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
     //IBActions
     @IBAction func onButtonPressed(sender: AnyObject) {
-
-        self.gameLogic(sender)
-
+        gameLogic(sender)
     }
 
     @IBAction func playAgainButton(sender: AnyObject) {
-
         startNumber = 1
         winner = 0
         gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         clearCounterPressed(sender)
-        winnerLabel.text = "Player O Turn"
+        winnerLabel.text = "Make a move!"
         playAgain.alpha = 0.01
 
         var button : UIButton
@@ -54,23 +66,27 @@ class ViewController: UIViewController {
 
     @IBAction func onDrag(panGesture: UIPanGestureRecognizer) {
         var point: CGPoint = panGesture.locationInView(self.view)
-
         selectionButton.center = point
-        
-    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
         selectImage = UIImage(named: "o.png")
-        winnerLabel.text = "Player O Turn"
-        timerLabel.text = String(counter)
-        selectionButton.setImage(selectImage, forState: .Normal)
-        //selectionButton
+        changeImage = UIImage(named: "x.png")
 
-    }
+        if (panGesture.state == UIGestureRecognizerState.Ended) {
+            UIView.animateWithDuration(1.0, animations: { () -> Void in
+                self.selectionButton.center = self.center!
+            })
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        } else {
+
+            if (CGRectContainsPoint(gameButton0.frame, point)) {
+                if (selectionButton !== UIImage(named: "x.png")) {
+                    gameButton0.setImage(changeImage, forState: .Normal)
+
+                } else {
+                    gameButton0.setImage(selectImage, forState: .Normal)
+                }
+            }
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -79,9 +95,7 @@ class ViewController: UIViewController {
 
     func gameLogic(sender: AnyObject) {
         if (gameState[sender.tag] == 0 && winner == 0) {
-
             if (startNumber % 2 == 0) {
-
                 changeImage = UIImage(named: "x.png")
                 selectImage = UIImage(named: "o.png")
                 gameState[sender.tag] = 2
@@ -89,10 +103,7 @@ class ViewController: UIViewController {
                 navigationItem.title = "Player O Turn"
                 selectionButton.setImage(selectImage, forState: .Normal)
 
-
-
             } else {
-
                 changeImage = UIImage(named: "o.png")
                 selectImage = UIImage(named: "x.png")
                 gameState[sender.tag] = 1
@@ -103,12 +114,8 @@ class ViewController: UIViewController {
 
             for combo in winningCombinations {
                 if (gameState[combo[0]] == gameState[combo[1]] && gameState[combo[1]] == gameState[combo[2]] && gameState[combo[0]] != 0) {
-
-
                     winner = gameState[combo[0]]
-
                     println(String(winner))
-
                 }
             }
 
@@ -116,12 +123,10 @@ class ViewController: UIViewController {
                 if (winner == 1) {
                     winnerLabel.text = "zeros winner winner chicken dinner"
                     //self.stopCounterPressed(sender)
-
                 }
                 else if (winner == 2) {
                     winnerLabel.text = "x's winner winner chicken dinner"
                     //self.stopCounterPressed(sender)
-
                 }
                 /*
                 else {
@@ -131,10 +136,8 @@ class ViewController: UIViewController {
                     self.presentViewController(alert, animated: true, completion: nil)
 
                     self.clearCounterPressed(sender)
-
                 }
 */
-
                 UIView.animateWithDuration(0.4, animations: {
                     self.playAgain.alpha = 1
                 })
@@ -148,12 +151,12 @@ class ViewController: UIViewController {
     @IBAction func startTimer(sender: AnyObject) {
         timer.invalidate()
         counter = 0
-        timerLabel.text = String(counter)
+        timerLabel.text = "\(counter) left!"
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
     }
 
     func update() {
-        timerLabel.text = String(counter++)
+        timerLabel.text = "\(counter++) secondes remain!"
     }
 
     @IBAction func stopCounterPressed(sender: AnyObject) {
@@ -168,7 +171,6 @@ class ViewController: UIViewController {
     }
 
     func turnOverPlay(sender: AnyObject) {
-
         if (timerLabel.text?.toInt() > 2) {
             println("timer")
             timer.invalidate()
