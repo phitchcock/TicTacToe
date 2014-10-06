@@ -99,7 +99,7 @@ class ViewController: UIViewController {
                 changeImage = UIImage(named: "x.png")
                 selectImage = UIImage(named: "o.png")
                 gameState[sender.tag] = 2
-                self.startTimer(sender)
+                startTimer(sender)
                 navigationItem.title = "Player O Turn"
                 selectionButton.setImage(selectImage, forState: .Normal)
 
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
                 changeImage = UIImage(named: "o.png")
                 selectImage = UIImage(named: "x.png")
                 gameState[sender.tag] = 1
-                self.startTimer(sender)
+                startTimer(sender)
                 navigationItem.title = "Player X Turn"
                 selectionButton.setImage(selectImage, forState: .Normal)
             }
@@ -150,40 +150,21 @@ class ViewController: UIViewController {
     //Timer functions
     @IBAction func startTimer(sender: AnyObject) {
         timer.invalidate()
-        counter = 10
+        counter = 5
         timerLabel.text = "Change Players"
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
     }
 
     func update() {
+
         timerLabel.text = "You only have \(counter--) secondes remaining!"
-    }
-
-    @IBAction func stopCounterPressed(sender: AnyObject) {
-        timer.invalidate()
-
-    }
-
-    @IBAction func clearCounterPressed(sender: AnyObject) {
-        timer.invalidate()
-        counter = 0
-        timerLabel.text = String(counter)
-    }
-
-    func turnOverPlay(sender: AnyObject) {
-        if (timerLabel.text?.toInt() > 2) {
-            println("timer")
+        if (counter == 0) {
             timer.invalidate()
-            counter = 0
-            timerLabel.text = String(counter)
-
             var alert = UIAlertController(title: "FAIL", message: "You ran out of time!", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "BOOM!", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-
-        } else {
-            self.startTimer(sender)
         }
     }
 }
+
 
