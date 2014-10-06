@@ -12,6 +12,7 @@ class ModalViewController: UIViewController, UIWebViewDelegate {
 
     //IBOutlets
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
 
     //IBActinos
@@ -19,13 +20,9 @@ class ModalViewController: UIViewController, UIWebViewDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         homeScreen()
-        //navigationBar.barTintColor = UIColor(red: 0.197, green: 0.236, blue: 0.233, alpha: 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +38,16 @@ class ModalViewController: UIViewController, UIWebViewDelegate {
 
     func homeScreen() {
         self.loadUrl("http://en.wikipedia.org/wiki/Tic-tac-toe")
+    }
+
+    func webViewDidStartLoad(webView: UIWebView) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+        
+    }
+
+    func webViewDidFinishLoad(webView: UIWebView) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
     
 }

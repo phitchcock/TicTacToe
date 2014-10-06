@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         clearCounterPressed(sender)
         winnerLabel.text = "Make a move!"
-        playAgain.alpha = 0.01
+        //self.playAgain.enabled = false
 
         var button : UIButton
 
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
-        playAgain.alpha = 0
+        //playAgain.alpha = 0
     }
 
     func gameLogic(sender: AnyObject) {
@@ -121,11 +121,11 @@ class ViewController: UIViewController {
 
             if (winner != 0) {
                 if (winner == 1) {
-                    winnerLabel.text = "zeros winner winner chicken dinner"
+                    winnerLabel.text = "ZEROS WINNER"
                     //self.stopCounterPressed(sender)
                 }
                 else if (winner == 2) {
-                    winnerLabel.text = "x's winner winner chicken dinner"
+                    winnerLabel.text = "X'S WINNER"
                     //self.stopCounterPressed(sender)
                 }
                 /*
@@ -139,7 +139,7 @@ class ViewController: UIViewController {
                 }
 */
                 UIView.animateWithDuration(0.4, animations: {
-                    self.playAgain.alpha = 1
+                    //self.playAgain.enabled = true
                 })
             }
             startNumber++
@@ -150,13 +150,13 @@ class ViewController: UIViewController {
     //Timer functions
     @IBAction func startTimer(sender: AnyObject) {
         timer.invalidate()
-        counter = 0
-        timerLabel.text = "\(counter) left!"
+        counter = 10
+        timerLabel.text = "Change Players"
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
     }
 
     func update() {
-        timerLabel.text = "\(counter++) secondes remain!"
+        timerLabel.text = "You only have \(counter--) secondes remaining!"
     }
 
     @IBAction func stopCounterPressed(sender: AnyObject) {
