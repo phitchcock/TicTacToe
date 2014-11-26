@@ -18,8 +18,8 @@ class ViewController: UIViewController {
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     var timer = NSTimer()
     var center:CGPoint?
-    var changeImage = UIImage()
-    var selectImage = UIImage()
+    var changeImage: UIImage!
+    var selectImage: UIImage!
 
     //IBOutlets
     @IBOutlet weak var gameButton0: UIButton!
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     //Apple Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectImage = UIImage(named: "o.png")
+        selectImage = UIImage(named: "o.png")!
         winnerLabel.text = "Make a move!"
         timerLabel.text = "\(counter) left!"
         center = selectionButton.center
@@ -53,12 +53,11 @@ class ViewController: UIViewController {
         gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         clearCounterPressed(sender)
         winnerLabel.text = "Make a move!"
-        //self.playAgain.enabled = false
+        //playAgain.enabled = false
 
         var button : UIButton
 
         for var i = 0; i < 9; i++ {
-
             button = view.viewWithTag(i) as UIButton
             button.setImage(nil, forState: .Normal)
         }
@@ -68,16 +67,14 @@ class ViewController: UIViewController {
         var point: CGPoint = panGesture.locationInView(self.view)
         selectionButton.center = point
 
-        selectImage = UIImage(named: "o.png")
-        changeImage = UIImage(named: "x.png")
+        selectImage = UIImage(named: "o.png")!
+        changeImage = UIImage(named: "x.png")!
 
         if (panGesture.state == UIGestureRecognizerState.Ended) {
             UIView.animateWithDuration(1.0, animations: { () -> Void in
                 self.selectionButton.center = self.center!
             })
-
         } else {
-
             if (CGRectContainsPoint(gameButton0.frame, point)) {
                 if (selectionButton !== UIImage(named: "x.png")) {
                     gameButton0.setImage(changeImage, forState: .Normal)
@@ -116,31 +113,26 @@ class ViewController: UIViewController {
                 if (gameState[combo[0]] == gameState[combo[1]] && gameState[combo[1]] == gameState[combo[2]] && gameState[combo[0]] != 0) {
                     winner = gameState[combo[0]]
                     println(String(winner))
+
                 }
             }
 
             if (winner != 0) {
                 if (winner == 1) {
                     winnerLabel.text = "ZEROS WINNER"
-                    //self.stopCounterPressed(sender)
+
                 }
                 else if (winner == 2) {
                     winnerLabel.text = "X'S WINNER"
-                    //self.stopCounterPressed(sender)
-                }
-                /*
-                else {
 
+                }
+                else if (winner == 0) {
                     var alert = UIAlertController(title: "Start Over", message: "No Player won!", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Yep!", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
 
-                    self.clearCounterPressed(sender)
+                    playAgainButton(sender)
                 }
-*/
-                UIView.animateWithDuration(0.4, animations: {
-                    //self.playAgain.enabled = true
-                })
+
             }
             startNumber++
             sender.setImage(changeImage, forState: .Normal)
@@ -156,14 +148,24 @@ class ViewController: UIViewController {
     }
 
     func update() {
-
         timerLabel.text = "You only have \(counter--) secondes remaining!"
+
         if (counter == 0) {
             timer.invalidate()
             var alert = UIAlertController(title: "FAIL", message: "You ran out of time!", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "BOOM!", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+    }
+
+    @IBAction func stopCounterPressed(sender: AnyObject) {
+        timer.invalidate()
+    }
+
+    @IBAction func clearCounterPressed(sender: AnyObject) {
+        timer.invalidate()
+        counter = 0
+        timerLabel.text = String(counter)
     }
 }
 

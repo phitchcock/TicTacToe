@@ -1,4 +1,15 @@
-###Tic Tac Toe###
+##Tic Tac Toe##
+###Project Requirements###
+
+1. As a user, I want to view playing board
+2. As a user, I want to see whose turn it is
+3. As a user, I want to figure out if I touched a specific label
+4. As a user, I want to determine if user has won the game
+5. As a user, I want to show the winner of a game
+6. As a user, I want to drag an X or an O to a grid position TODO
+7. As a user, I want to limit the amount of time a user takes to make a move TODO
+8. As a user, I want to display help for users who have never seen Tic, Tac, Toe.
+9. As a user, I want to play the computer TODO
 
 outlet created for button, starting with button0 to reflect index number in the array
 

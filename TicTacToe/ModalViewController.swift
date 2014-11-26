@@ -32,7 +32,7 @@ class ModalViewController: UIViewController, UIWebViewDelegate {
 
     func loadUrl(urlString: NSString) {
         let url = NSURL(string: urlString)
-        let urlRequest = NSURLRequest(URL: url)
+        let urlRequest = NSURLRequest(URL: url!)
         self.webView.loadRequest(urlRequest)
     }
 
